@@ -1,0 +1,42 @@
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Anticipos</h1>
+    <p class="lead">Gesti&oacute;n de anticipos</p>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Centro de Costo</th>
+          <th scope="col">Viaja a</th>
+          <th scope="col">Objeto del viaje</th>
+          <th scope="col">Desde</th>
+          <th scope="col">Hasta</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Solicitado</th>
+          <th scope="col">Autorizado</th>
+          <!-- <th scope="col">Saldo</th>
+          <th scope="col">%</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let advance of advances" style="cursor:pointer"
+            (click)="router.navigate(['/advance', advance.id])">
+          <th scope="row">
+            <a class="p-2 text-dark" [routerLink]="['/advance', advance.id]">{{ advance.id }}</a>
+          </th>
+          <td>{{ advance.costCenter.name }}</td>
+          <td>{{ advance.travelTo }}</td>
+          <td>{{ advance.object }}</td>
+          <td>{{ advance.start | date }}</td>
+          <td>{{ advance.end | date }}</td>
+          <td>{{ advance.status }}</td>
+          <td class="number text-right">{{ advance.requested | number }}</td>
+          <td class="number text-right">{{ advance.approved | number }}</td>
+          <!-- <td class="number text-right">{{ advance.balance | number }}</td>
+          <td><ngb-progressbar showValue="true" [type]="advance.type" [value]="advance.balance"></ngb-progressbar></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>

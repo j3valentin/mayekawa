@@ -1,0 +1,33 @@
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Centros de Costo</h1>
+  <p class="lead">
+    Gesti&oacute;n de presupuestos de centros de costo por rangos o peri&oacute;dos
+  </p>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Presupuesto</th>
+        <th scope="col">Saldo</th>
+        <th scope="col">%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let costCenter of costCenters" style="cursor:pointer"
+          (click)="router.navigate(['/cost-center', costCenter.id])">
+        <th scope="row">
+            <a class="p-2 text-dark" [routerLink]="['/cost-center', costCenter.id]">{{ costCenter.id }}</a>
+            <!-- <a class="p-2 text-dark" routerLink="/cost-center/{{costCenter.id}}">{{ costCenter.id }}</a> -->
+        </th>
+        <td>{{ costCenter.name }}</td>
+        <td class="number text-right">{{ costCenter.budget | number }}</td>
+        <td class="number text-right">{{ costCenter.balance | number }}</td>
+        <td><ngb-progressbar showValue="true" [type]="costCenter.type" [value]="costCenter.percent"></ngb-progressbar></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,45 @@
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Centro de Costo {{ costCenter.name }}</h1>
+  <p class="lead">
+    Gesti&oacute;n de presupuestos de centro de costo por rangos o peri&oacute;dos
+  </p>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Presupuesto</th>
+        <th scope="col">Inicio</th>
+        <th scope="col">Fin</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td>
+            <button type="submit" class="btn btn-light">
+              Crear
+            </button>
+        </td>
+        <td><input type="number" name="amount" id="amount" class="form-control text-right"></td>
+        <td><input type="date" name="start" id="start" class="form-control"></td>
+        <td><input type="date" name="end" id="end" class="form-control"></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr *ngFor="let budget of budgets">
+        <th scope="row">
+            <a class="p-2 text-dark">{{ budget.id }}</a>
+        </th>
+        <td class="number text-right">{{ budget.amount | number }}</td>
+        <td>{{ budget.start | date }}</td>
+        <td>{{ budget.end | date }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button type="button" class="btn btn-light" routerLink="/cost-centers">
+  Ir a centros de costo
+</button>

@@ -1,0 +1,35 @@
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Anticipo de {{ advance.travelTo }}</h1>
+  <h2>({{ advance.start | date }} - {{ advance.end | date }})</h2>
+  <p class="lead">Gesti&oacute;n de conceptos de anticipo</p>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Concepto</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Saldo</th>
+        <th scope="col">%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let concept of advanceConcepts" style="cursor:pointer"
+          (click)="router.navigate(['/advance', advance.id, 'details', concept.id])">
+        <th scope="row">
+          <a class="p-2 text-dark"
+             [routerLink]="['/advance', advance.id, 'details', concept.id]">
+            {{ concept.id }}
+          </a>
+        </th>
+        <td>{{ concept.concept.name }}</td>
+        <td class="number text-right">{{ concept.amount | number }}</td>
+        <td class="number text-right">{{ concept.balance | number }}</td>
+        <td><ngb-progressbar showValue="true"
+            [type]="concept.type" [value]="concept.balance"></ngb-progressbar></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,51 @@
+<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Anticipo de {{ advance.travelTo }}</h1>
+  <h2>({{ advance.start | date }} - {{ advance.end | date }})</h2>
+  <p class="lead">Gesti&oacute;n de detalles de anticipo para {{ concept.name }}</p>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Tasa de cambio</th>
+        <th scope="col">Proveedor</th>
+      </tr>
+    </thead>
+    <tfoot>
+        <tr>
+          <td>
+              <button type="submit" class="btn btn-light">
+                Crear
+              </button>
+          </td>
+          <td>
+            <select name="amount" id="amount" class="form-control text-right">
+              <option>Taxi</option>
+              <option>Almuerzo</option>
+              <option>Recarga celular</option>
+              <option>Lavanter&iacute;a</option>
+            </select>
+          </td>
+          <td><input type="date" name="start" id="start" class="form-control"></td>
+          <td><input type="number" name="amount" id="amount" class="form-control text-right"></td>
+          <td><input type="number" name="trm" id="trm" class="form-control text-right"></td>
+          <td><input name="supplier" id="supplier" class="form-control"></td>
+        </tr>
+      </tfoot>
+      <tbody>
+      <tr *ngFor="let detail of details">
+        <th scope="row">{{ detail.id }}</th>
+        <td>{{ detail.type }}</td>
+        <td>{{ detail.date | date }}</td>
+        <td class="number text-right">{{ detail.amount | number }}</td>
+        <td class="number text-right">{{ detail.trm | number }}</td>
+        <td>{{ detail.supplier }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
